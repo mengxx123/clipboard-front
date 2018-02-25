@@ -1,17 +1,21 @@
-let debug = process.env.NODE_ENV !== 'production'
+// let debug = process.env.NODE_ENV !== 'production'
 
-let imgDomain
-let apiDomain
+let domain
 if (process.env.NODE_ENV === 'production') {
-    imgDomain = 'http://120.79.29.47'
-    apiDomain = 'http://example.yunser.com'
+    domain = {
+        api: 'http://example.yunser.com',
+        qrcode: 'http://node.api.yunser.com',
+        ws: 'ws://api.clipboard.yunser.com/'
+    }
 } else {
-    imgDomain = 'http://120.79.29.47'
-    apiDomain = 'http://localhost'
+    domain = {
+        api: 'http://example.yunser.com',
+        qrcode: 'http://node.api.yunser.com',
+        // ws: 'ws://localhost:1333'
+        ws: 'ws://api.clipboard.yunser.com'
+    }
 }
 
 module.exports = {
-    imgDomain,
-    apiDomain,
-    debug
+    domain
 }

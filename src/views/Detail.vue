@@ -22,6 +22,7 @@
     const Clipboard = window.Clipboard
     const io = window.io
     const uuidUtil = require('uuid')
+    const config = require('../config')
 
     export default {
         data () {
@@ -41,7 +42,7 @@
                 this.id = this.$route.params.id
                 this.title = '剪切板 ' + this.id
                 this.host = location.href
-                this.src = 'http://node.api.yunser.com/qrcode?content=' + this.host
+                this.src = config.domain.qrcode + '/qrcode?content=' + this.host
                 console.log(location)
                 console.log(this.id)
 
@@ -54,7 +55,7 @@
                     this.$storage.set('uuid', uuid)
                 }
                 if (!window.$socket) {
-                    window.$socket = io.connect('ws://localhost:1333')
+                    window.$socket = io.connect(config.domain.ws)
                 }
                 this.socket = window.$socket
                 console.log('发送链接')
@@ -80,6 +81,7 @@
                 //     })
             },
             initClipboard() {
+                // TODO destroyed
                 let clipboard = new Clipboard('.btn-copy')
                 clipboard.on('success', function (e) {
                     console.info('Action:', e.action)
