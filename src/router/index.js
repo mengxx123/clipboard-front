@@ -3,6 +3,7 @@ import Router from 'vue-router'
 
 const Local = resolve => require(['@/views/Local'], resolve)
 const LocalHelp = resolve => require(['@/views/LocalHelp'], resolve)
+const LocalSetting = resolve => require(['@/views/LocalSetting'], resolve)
 const Clipboard = resolve => require(['@/views/Clipboard'], resolve)
 const ClipboardDetail = resolve => require(['@/views/ClipboardDetail'], resolve)
 const About = resolve => require(['@/views/About'], resolve)
@@ -19,6 +20,10 @@ let routes = [
     {
         path: '/help',
         component: LocalHelp
+    },
+    {
+        path: '/settings',
+        component: LocalSetting
     },
     {
         path: '/clipboard',
