@@ -4,8 +4,6 @@
 </template>
 
 <script>
-    const Clipboard = window.Clipboard
-
     export default {
         data () {
             return {
