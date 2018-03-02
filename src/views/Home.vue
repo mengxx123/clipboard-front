@@ -10,6 +10,7 @@
             <li class="item" v-for="item in contents">
                 <div class="text">
                     <a class="remove" @click.prevent="remove(item)">删除</a>
+                    <router-link :to="'/clipboards/' + item.id">编辑</router-link>
                     <a class="btn-copy" href="javascript:;" :data-clipboard-text="item.text">复制</a>
                     {{ item.text }}
                 </div>
@@ -55,6 +56,9 @@
                 })
                 this.$storage.set('contents', this.contents)
                 this.content = ''
+            },
+            edit() {
+//                this.$router.push('')
             },
             remove(item) {
                 for (let i = 0; i < this.contents.length; i++) {
