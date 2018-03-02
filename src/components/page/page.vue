@@ -1,5 +1,5 @@
 <template>
-    <ui-page :title="title || page.title" :backable="backable" ref="page">
+    <ui-page :title="title || page.title" :page="page" :backable="backable" ref="page">
         <div slot="drawer">
             <ui-appbar title=""></ui-appbar>
             <ui-list @itemClick="toggle()">

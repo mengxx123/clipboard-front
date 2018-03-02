@@ -16,6 +16,8 @@
 &lt;/body&gt;
 &lt;/html&gt;</textarea>
             </ui-paper>
+            <!--<ui-text-field v-model="key" hintText="自定义快捷键" />-->
+            <br>
             <ui-raised-button label="保存" primary @click="save" />
         </div>
     </my-page>

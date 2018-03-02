@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-const Home = resolve => require(['@/views/Home'], resolve)
+const Local = resolve => require(['@/views/Local'], resolve)
+const LocalHelp = resolve => require(['@/views/LocalHelp'], resolve)
 const Clipboard = resolve => require(['@/views/Clipboard'], resolve)
 const ClipboardDetail = resolve => require(['@/views/ClipboardDetail'], resolve)
 const About = resolve => require(['@/views/About'], resolve)
@@ -13,7 +14,11 @@ Vue.use(Router)
 let routes = [
     {
         path: '/',
-        component: Home
+        component: Local
+    },
+    {
+        path: '/help',
+        component: LocalHelp
     },
     {
         path: '/clipboard',
