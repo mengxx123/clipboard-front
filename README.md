@@ -1,21 +1,55 @@
-# template-front
+# clipboard-front
 
-> A Vue.js project
+![质量](https://img.shields.io/badge/质量-★★★★★-brightgreen.svg) ![完成 50%](https://img.shields.io/badge/完成-100%25-brightgreen.svg)
 
-## Build Setup
+> a web clipboard.一个在线剪切板应用。
 
-``` bash
-# install dependencies
-npm install
+## 项目信息
 
-# serve with hot reload at localhost:8080
-npm run dev
+* [项目主页](http://project.yunser.com/projects/undefined)
+* [在线 Demo](undefined)
+* ![技术栈](https://img.shields.io/badge/技术栈--brightgreen.svg)
 
-# build for production with minification
+如果觉得项目不错，可以给个星星。项目有 bug 可以到 [这里](https://github.com/yunser/undefined/issues) 提交问题。
+
+## 开发构建
+
+```bash
+git clone https://github.com/yunser/undefined.git # 下载
+cd undefined # 进入项目根目录
+npm install # 安装依赖
+npm run dev # 开发
+
+# 构建
 npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
 ```
 
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+# 截图
+
+![截图](_project/screenshot/home.png)
+
+# 项目结构
+
+```text
+root
+├─ README.md
+├─ build # 构建流程配置
+├─ config # 项目配置文件
+├─ index.html # 在这里配置 CDN
+├─ package.json
+├─ src
+│  ├─ App.vue
+│  ├─ components # 通用组件
+│  ├─ config # 项目配置文件
+│  ├─ main.js
+│  ├─ router # 路由
+│  ├─ scss
+│  ├─ util # 工具类
+│  └─ views # 视图
+└─ static # 静态资源目录
+   └─ img # 图片
+```
+
+# 协议
+
+![MIsssssT 协议](https://img.shields.io/badge/license-MIsssssT%20©yunser-brightgreen.svg)
