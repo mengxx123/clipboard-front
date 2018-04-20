@@ -8,6 +8,7 @@ const Clipboard = resolve => require(['@/views/Clipboard'], resolve)
 const ClipboardDetail = resolve => require(['@/views/ClipboardDetail'], resolve)
 const About = resolve => require(['@/views/About'], resolve)
 const Detail = resolve => require(['@/views/Detail'], resolve)
+const Test = resolve => require(['@/views/Test'], resolve)
 const Error404 = resolve => require(['@/views/error/Error404'], resolve)
 
 Vue.use(Router)
@@ -24,6 +25,10 @@ let routes = [
     {
         path: '/settings',
         component: LocalSetting
+    },
+    {
+        path: '/test',
+        component: Test
     },
     {
         path: '/clipboard',

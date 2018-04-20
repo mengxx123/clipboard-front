@@ -1,45 +1,42 @@
 <template>
-    <my-page title="编辑剪切板" backable>
-        <div class="clipboard-box">
-            <ui-paper class="editor">
-                <textarea class="form-control"  id="textareaCode" name="textareaCode">&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;head&gt;
-&lt;meta charset=&quot;utf-8&quot;&gt;
-&lt;title&gt;云设在线编辑器(yunser.com)&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
+    <my-page class="page-detail" title="编辑剪切板" :page="page" backable>
+        <div class="editor-box">
+                <pre id="code" class="ace_editor" style="height100%; min-height:500px"><textarea class="ace_text-input">
+    ## 二级标题
+    > 引用
 
-&lt;h1&gt;这是标题&lt;/h1&gt;
-&lt;p&gt;这是段落。&lt;/p&gt;
-
-&lt;/body&gt;
-&lt;/html&gt;</textarea>
-            </ui-paper>
-            <!--<ui-text-field v-model="key" hintText="自定义快捷键" />-->
-            <br>
-            <ui-raised-button label="保存" primary @click="save" />
+    这是内容
+    ### 三级标题
+    **加粗**文字
+            </textarea></pre>
         </div>
+        <!--<ui-text-field v-model="key" hintText="自定义快捷键" />-->
+        <br>
+        <!--<ui-raised-button label="保存" primary @click="save" />-->
     </my-page>
 </template>
 
 <script>
-    const CodeMirror = window.CodeMirror
+    const ace = window.ace
 
     export default {
         data () {
             return {
-                content: {}
+                content: {},
+                page: {
+                    menu: [
+                        {
+                            type: 'icon',
+                            icon: 'check',
+                            click: this.save,
+                            title: '保存'
+                        }
+                    ]
+                }
             }
         },
         mounted() {
-            this.editor = CodeMirror.fromTextArea(document.getElementById('textareaCode'), {
-                selectionPointer: true,
-                lineNumbers: false,
-                matchBrackets: true,
-                indentUnit: 4,
-                indentWithTabs: true
-            })
+            this.initEditor()
 
             let id = this.$route.params.id
             let contents = this.$storage.get('contents', [])
@@ -53,6 +50,11 @@
             }
         },
         methods: {
+            initEditor() {
+                this.editor = ace.edit('code')
+                this.editor.setFontSize(16)
+                this.editor.setOption('wrap', 'free') // 自动换行,设置为off关闭
+            },
             save() {
                 this.content.text = this.editor.getValue()
                 let contents = this.$storage.get('contents', [])
@@ -70,14 +72,22 @@
 </script>
 
 <style lang="scss" scoped>
-.clipboard-box {
-    .editor {
+    .editor-box {
         display: block;
-        width: 400px;
-        max-width: 100%;
-        height: 400px;
-        margin-bottom: 16px;
-        padding: 16px;
+        width: 100%;
+        max-width: 800px;
+        height: 100%;
+        /*margin-bottom: 16px;*/
+        /*padding: 16px;*/
+        box-shadow: 0 1px 6px rgba(0,0,0,.117647), 0 1px 4px rgba(0,0,0,.117647);
     }
-}
+</style>
+
+<style lang="scss">
+    .page-detail {
+        .ui-page-container {
+            height: 100%;
+            padding: 0;
+        }
+    }
 </style>
