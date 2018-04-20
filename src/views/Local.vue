@@ -68,6 +68,7 @@
             })
 
             document.addEventListener('keydown', this.onKeydown)
+            this.initWebIntents()
         },
         destroyed() {
             document.removeEventListener('keydown', this.onKeydown)
@@ -75,6 +76,13 @@
             this.clipboard2.destroy()
         },
         methods: {
+            initWebIntents() {
+                if (!window.intent) {
+                    return
+                }
+                let data = window.intent.data
+                this.content = data
+            },
             copy() {
                 document.getElementById('auto-copy').click()
             },
