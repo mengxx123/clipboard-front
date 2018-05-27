@@ -1,0 +1,17 @@
+{
+    "name": "clipboard-front",
+    "description": "a web clipboard.一个在线剪切板应用。",
+    "version": "1.0.0",
+    "author": "yunser <1418503647@.qq.com>",
+    "private": false,
+    "homepage": "http://clipboard.yunser.com/",
+    "license": "MIT",
+    "manifest_version": 1,
+    "keywords": [
+        "clipboard",
+        "vue"
+    ],
+    "grade": 100,
+    "progress": 100,
+    "repository": "github:yunser/clipboard-front"
+}

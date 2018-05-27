@@ -27,7 +27,6 @@
             this.socket = io.connect(config.domain.ws);
             window.$socket = this.socket
 
-			
 			this.socket.on('created', id => {
                 this.$router.push('/c/' + id)
 			})
