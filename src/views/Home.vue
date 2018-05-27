@@ -79,7 +79,8 @@
     }
     .text {
         display: inline-block;
-        width: 200px;
+        width: 400px;
+        max-width: 100%;
         word-wrap: none;
         white-space: nowrap;
         overflow: hidden;
