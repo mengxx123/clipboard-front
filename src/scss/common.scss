@@ -3,3 +3,18 @@ body,
 #app {
     height: 100%;
 }
+.ui-page-body {
+    -webkit-overflow-scrolling : touch;
+}
+input,
+textarea {
+  -webkit-appearance: none;
+}
+.mu-tabs {
+    margin-bottom: 16px;
+    background-color: #fff;
+    border-bottom: 1px solid rgba(0, 0, 0, .12);
+}
+.mu-tab-text {
+    color: #333;
+}

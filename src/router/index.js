@@ -2,11 +2,9 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 const Local = resolve => require(['@/views/Local'], resolve)
-const LocalHelp = resolve => require(['@/views/LocalHelp'], resolve)
 const LocalSetting = resolve => require(['@/views/LocalSetting'], resolve)
 const Clipboard = resolve => require(['@/views/Clipboard'], resolve)
-const ClipboardDetail = resolve => require(['@/views/ClipboardDetail'], resolve)
-const About = resolve => require(['@/views/About'], resolve)
+const ClipboardEdit = resolve => require(['@/views/ClipboardEdit'], resolve)
 const Detail = resolve => require(['@/views/Detail'], resolve)
 const Test = resolve => require(['@/views/Test'], resolve)
 const Error404 = resolve => require(['@/views/error/Error404'], resolve)
@@ -17,10 +15,6 @@ let routes = [
     {
         path: '/',
         component: Local
-    },
-    {
-        path: '/help',
-        component: LocalHelp
     },
     {
         path: '/settings',
@@ -35,12 +29,12 @@ let routes = [
         component: Clipboard
     },
     {
-        path: '/clipboards/:id',
-        component: ClipboardDetail
+        path: '/add',
+        component: ClipboardEdit
     },
     {
-        path: '/about',
-        component: About
+        path: '/clipboards/:id',
+        component: ClipboardEdit
     },
     {
         path: '/c/:id',

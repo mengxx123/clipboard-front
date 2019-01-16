@@ -1,22 +1,23 @@
 <template>
     <my-page title="剪切板" :page="page">
+        <!-- <ui-text-field  v-model="title" hintText="标题（可选）" />
+        <br>
         <ui-text-field  v-model="content" multiLine :rows="4" :rowsMax="4" hintText="粘贴内容在这里" />
         <div class="btns">
             <ui-raised-button label="保存到剪切板" primary @click="add" />
-        </div>
-        <div v-if="!contents.length">剪切板里没有内容</div>
+        </div> -->
+        <div class="empty" v-if="!contents.length">剪切板里没有内容</div>
         <ul class="content-list">
             <li class="item" v-for="(item, index) in contents">
-                <div class="text">
-                    <kbd>{{ index + 1 }}</kbd>
-                    <a class="remove" href="#" @click.prevent="remove(item)">删除</a>
-                    <router-link :to="'/clipboards/' + item.id">编辑</router-link>
-                    <a class="btn-copy" href="javascript:;" :data-clipboard-text="item.text">复制</a>
-                    {{ item.text }}
-                </div>
+                <kbd>{{ index + 1 }}</kbd>
+                <div class="title">{{ item.title || item.text }}</div>
+                <a class="item-btn remove" href="#" @click.prevent="remove(item)">删除</a>
+                <router-link class="item-btn " :to="'/clipboards/' + item.id">编辑</router-link>
+                <a class="item-btn btn-copy" href="javascript:;" :data-clipboard-text="item.text">复制</a>
             </li>
         </ul>
         <button id="auto-copy" class="btn-copy-2" data-clipboard-text="item.text2" style="display: none">呵呵</button>
+        <ui-float-button class="btn-add" icon="add" @click="add"/>
     </my-page>
 </template>
 
@@ -26,15 +27,16 @@
     export default {
         data () {
             return {
+                title: '',
                 content: '',
                 contents: [],
                 page: {
                     menu: [
-                        {
-                            type: 'icon',
-                            icon: 'help',
-                            to: '/help'
-                        }
+                        // {
+                        //     type: 'icon',
+                        //     icon: 'help',
+                        //     to: '/help'
+                        // }
                     ]
                 }
             }
@@ -44,11 +46,15 @@
             this.contents = this.$storage.get('contents', [])
 
             this.clipboard = new Clipboard('.btn-copy')
-            this.clipboard.on('success', function (e) {
+            this.clipboard.on('success', e => {
                 console.info('Action:', e.action)
                 console.info('Text:', e.text)
                 console.info('Trigger:', e.trigger)
                 e.clearSelection()
+                this.$message({
+                    type: 'success',
+                    text: '已复制'
+                })
             })
             this.clipboard.on('error', function (e) {
                 console.error('Action:', e.action)
@@ -65,6 +71,11 @@
                 console.info('Text:', e.text)
                 console.info('Trigger:', e.trigger)
                 e.clearSelection()
+
+                this.$message({
+                    type: 'success',
+                    text: '已复制'
+                })
             })
 
             document.addEventListener('keydown', this.onKeydown)
@@ -87,18 +98,20 @@
                 document.getElementById('auto-copy').click()
             },
             onKeydown(e) {
-                if (document.activeElement.tagName !== 'TEXTAREA') {
+                if (document.activeElement.tagName !== 'TEXTAREA' && document.activeElement.tagName !== 'INPUT') {
                     this.keyNum = e.keyCode - 49
                     document.getElementById('auto-copy').click(e)
                 }
             },
             add() {
-                this.contents.unshift({
-                    id: '' + new Date().getTime(),
-                    text: this.content
-                })
-                this.$storage.set('contents', this.contents)
-                this.content = ''
+                this.$router.push('/add')
+                // this.contents.unshift({
+                //     id: '' + new Date().getTime(),
+                //     title: this.title,
+                //     text: this.content
+                // })
+                // this.$storage.set('contents', this.contents)
+                // this.content = ''
             },
             edit() {
 //                this.$router.push('')
@@ -139,18 +152,40 @@
         margin-bottom: 24px;
     }
     .content-list {
+        max-width: 400px;
         .item {
-            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            height: 48px;
+            // padding: 0 16px;
+            // margin-bottom: 8px;
+            &:hover {
+                background-color: #f9f9f9;
+            }
         }
-        .text {
-            display: inline-block;
-            width: 400px;
-            max-width: 100%;
+        .title {
+            flex-grow: 1;
+            flex-shrink: 1;
             word-wrap: none;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
         }
+        .item-btn {
+            flex-grow: 0;
+            flex-shrink: 0;
+            margin-left: 8px;
+        }
     }
-
+    .btn-add {
+        position: fixed;
+        right: 24px;
+        bottom: 24px;
+    }
+    .empty {
+        padding: 80px 0;
+        text-align: center;
+        color: #999;
+        font-size: 16px;
+    }
 </style>
