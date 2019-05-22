@@ -1,14 +1,16 @@
 <template>
-    <my-page title="剪切板 - 高级">
-        <div class="clipboard-box" v-if="mode === 'create'">
-            <ui-raised-button class="create" primary label="创建剪切板" @click="create" />
-            <br>
-            <a class="btn-copy" href="javascript:;" @click="mode = 'code'">已经创建了</a>
-        </div>
-        <div class="clipboard-box" v-if="mode === 'code'">
-            <ui-text-field class="input" v-model="code" label="剪切板编号" />
-            <br>
-            <ui-raised-button class="enter" primary label="进入剪切板" @click="enter" />
+    <my-page title="高级剪切板" :page="page">
+        <div class="common-container container">
+            <div class="clipboard-box" v-if="mode === 'create'">
+                <ui-raised-button class="create" primary label="创建剪切板" @click="create" />
+                <br>
+                <a class="btn-copy" href="javascript:;" @click="mode = 'code'">已经创建了</a>
+            </div>
+            <div class="clipboard-box" v-if="mode === 'code'">
+                <ui-text-field class="input" v-model="code" label="剪切板编号" />
+                <br>
+                <ui-raised-button class="enter" primary label="进入剪切板" @click="enter" />
+            </div>
         </div>
     </my-page>
 </template>
@@ -22,7 +24,18 @@
     export default {
         data () {
             return {
-                mode: 'create'
+                mode: 'create',
+                page: {
+                    menu: [
+                        {
+                            type: 'icon',
+                            icon: 'help',
+                            href: 'https://project.yunser.com/products/839d9b805adc11e982887f5221e49d12',
+                            target: '_blank',
+                            title: '帮助'
+                        }
+                    ]
+                }
             }
         },
         mounted() {

@@ -1,6 +1,6 @@
 <template>
     <my-page :title="title">
-        <div class="container">
+        <div class="common-container container">
             <ui-tabs :value="activeTab" @change="handleTabChange">
                 <ui-tab value="tab1" title="数据"/>
                 <ui-tab value="tab2" title="连接"/>

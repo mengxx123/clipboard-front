@@ -6,13 +6,16 @@
             </div>
             <ui-list @itemClick="toggle()">
                 <ui-list-item title="剪切板" to="/">
+                    <ui-icon slot="left" value="home"/>
+                </ui-list-item>
+                <ui-list-item title="高级剪切板" to="/clipboard">
                     <ui-icon slot="left" value="grade"/>
                 </ui-list-item>
-                <ui-list-item title="高级" to="/clipboard">
+                <ui-list-item title="剪切板历史" to="/history">
                     <ui-icon slot="left" value="grade"/>
                 </ui-list-item>
                 <ui-list-item title="关于/帮助" href="https://project.yunser.com/products/c0b4e4e05c5b11e888a50737631f72f2" target="_blank">
-                    <ui-icon slot="left" value="grade"/>
+                    <ui-icon slot="left" value="info"/>
                 </ui-list-item>
             </ui-list>
         </div>

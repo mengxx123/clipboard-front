@@ -1,20 +1,22 @@
 <template>
-    <my-page title="剪切板">
-        <ui-text-field  v-model="content" multiLine :rows="4" :rowsMax="4" hintText="粘贴内容在这里" />
-        <div class="btns">
-            <ui-raised-button label="保存到剪切板" primary @click="add" />
-        </div>
+    <my-page title="剪切板" :page="page">
+        <div class="common-container container">
+            <ui-text-field  v-model="content" multiLine :rows="4" :rowsMax="4" hintText="粘贴内容在这里" />
+            <div class="btns">
+                <ui-raised-button label="保存到剪切板" primary @click="add" />
+            </div>
 
-        <div v-if="!contents.length">剪切板里没有内容</div>
-        <ul class="content-list">
-            <li class="item" v-for="item in contents">
-                <div class="text">
-                    <a class="remove" @click.prevent="remove(item)">删除</a>
-                    <a class="btn-copy" href="javascript:;" :data-clipboard-text="item.text">复制</a>
-                    {{ item.text }}
-                </div>
-            </li>
-        </ul>
+            <div v-if="!contents.length">剪切板里没有内容</div>
+            <ul class="content-list">
+                <li class="item" v-for="item in contents">
+                    <div class="text">
+                        <a class="remove" @click.prevent="remove(item)">删除</a>
+                        <a class="btn-copy" href="javascript:;" :data-clipboard-text="item.text">复制</a>
+                        {{ item.text }}
+                    </div>
+                </li>
+            </ul>
+        </div>
     </my-page>
 </template>
 
@@ -25,7 +27,18 @@
         data () {
             return {
                 content: '',
-                contents: []
+                contents: [],
+                page: {
+                    menu: [
+                        {
+                            type: 'icon',
+                            icon: 'apps',
+                            href: 'https://app.yunser.com?utm_source=clipboard',
+                            target: '_blank',
+                            title: '应用'
+                        }
+                    ]
+                }
             }
         },
         mounted() {
