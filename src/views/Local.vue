@@ -7,7 +7,9 @@
             <div class="btns">
                 <ui-raised-button label="保存到剪切板" primary @click="add" />
             </div> -->
-            <a href="javascript:;" v-if="!$store.state.user && !isEmbed" @click="login">点击登陆</a>
+            <div class="tip">
+                <a href="javascript:;" v-if="!$store.state.user && !isEmbed" @click="login">登陆</a>后，
+            </div>
             <!-- <a href="javascript:;" v-else>{{ $store.state.user.name }}</a> -->
 
             <div class="empty" v-if="!contents.length">剪切板里没有内容</div>
